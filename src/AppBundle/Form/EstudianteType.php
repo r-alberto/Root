@@ -33,7 +33,7 @@ class EstudianteType extends AbstractType
         $resolver->setDefaults(array(
             'data_class' => 'AppBundle\Entity\Estudiante',
             'csrf_protection' => false,
-            'allow_extra_fielda' =>true
+            'allow_extra_fields' =>true
         ));
     }
 }

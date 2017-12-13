@@ -39,30 +39,33 @@
         function  addEstudiante(estudiante) {
 
             $.ajax({
-                type: "POST",
+                type: "PUT",
                 data: JSON.stringify(estudiante),
-                url: "http://voy/app_dev.php/estudiante/",
+                url: "http://voy/app_dev.php/estudiante/"+estudiante.id,
                 error: function() {
 
                 },
                 success: function (data) {
+                    window.location.href="http://voy/app_dev.php/estudiante/lista";
                     console.log(data);
                 }
             });
 
-        }
+        };
 
         $(document).ready(function () {
 
+
             $('#addEstudiante').click(function () {
 
-                var name = $('#nombre').val();
-                var email = $('#edad').val();
+                var nombre = $('#nombre').val();
+                var edad = $('#edad').val();
+                var id = $('#id').val();
                 /** var fecha = $('#fechaNacimiento').val(); */
 
-                //  alert(name+", "+email);
+                 //alert(nombre+", "+edad);
 
-                addUser({ nombre : name, edad: email });
+                addEstudiante({ nombre : nombre, edad: edad, id:id });
 
             });
 

@@ -72,6 +72,41 @@ class EstudianteController extends Controller
     }
 
     /**
+     * @Route("/{id}", name="actualizar_estudiante",options={"expose"=true})
+     * @param Estudiante $estudiante
+     * @param Request $request
+     * @Method({"PUT"})
+     * return JasonResponse
+     */
+    public function actualizarEstudiante(Request $request, Estudiante $estudiante)
+    {
+
+
+        $data = json_decode($request->getContent(), true);
+        $form = $this->createForm(EstudianteType::class, $estudiante);
+
+        $form->submit($data);
+
+        if ($form->isValid()) {
+
+            $em = $this->getDoctrine()->getEntityManager();
+           //$em->persist($estudiante);
+
+            $em->flush();
+
+        } else {
+
+        }
+
+        $data = $this->get('serializer')->serialize($estudiante, 'json');
+
+        $newEstudiante = json_decode($data, true);
+
+        return new JsonResponse($newEstudiante);
+
+    }
+
+    /**
      * @Route("/", name="api_list_estudiante")
      * @param Request $request
      * @Method("GET")
