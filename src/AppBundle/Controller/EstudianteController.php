@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\AppBundle;
 use AppBundle\Form\EstudianteType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -106,4 +107,21 @@ class EstudianteController extends Controller
         return new JsonResponse($estudiante);
 
     }
+
+    /**
+     * @Route("/{id}/edit", name="edit_estudiante", requirements={"id"="\d+"} )
+     * @param Request $request
+     * @Method("GET")
+     * @param Estudiante $estudiante
+     * return JsonResponse
+     */
+    public function EditEstudiantes(Request $request, Estudiante $estudiante)
+    {
+
+        return $this->render('AppBundle:Estudiante:edit_estudiante.html.twig',
+        array ("estudiante"=>$estudiante)
+        );
+
+
     }
+}
